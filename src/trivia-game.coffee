@@ -50,7 +50,7 @@ class Game
     $question = Cheerio.load ("<span>" + @currentQ.question + "</span>")
     link = $question('a').attr('href')
     text = $question('span').text()
-    resp.send "Answer with !a or !answer\n" +
+    resp.send "Answer with #{global.username} a or answer followed by the actual answer\n" +
               "For #{@currentQ.value} in the category of #{@currentQ.category}:\n" +
               "#{text} " +
               if link then " #{link}" else ""
@@ -118,20 +118,20 @@ class Game
 
 module.exports = (robot) ->
   game = new Game(robot)
-  robot.hear /^!trivia/, (resp) ->
+  robot.hear /trivia/, (resp) ->
     game.askQuestion(resp)
 
-  robot.hear /^!skip/, (resp) ->
+  robot.hear /skip/, (resp) ->
     game.skipQuestion(resp)
 
-  robot.hear /^!a(nswer)? (.*)/, (resp) ->
+  robot.hear /a(nswer)? (.*)/, (resp) ->
     game.answerQuestion(resp, resp.match[2])
 
-  robot.hear /^!score (.*)/i, (resp) ->
+  robot.hear /score (.*)/i, (resp) ->
     game.checkScore(resp, resp.match[1].toLowerCase().trim())
 
-  robot.hear /^!scores/i, (resp) ->
+  robot.hear /scores/i, (resp) ->
     game.checkScore(resp, "all")
 
-  robot.hear /^!h(int)?/, (resp) ->
+  robot.hear /h(int)?/, (resp) ->
     game.hint(resp)
