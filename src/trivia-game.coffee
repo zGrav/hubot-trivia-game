@@ -74,14 +74,14 @@ class Game
       checkAnswer = @currentQ.validAnswer.toLowerCase().replace /[\\'"\.,-\/#!$%\^&\*;:{}=\-_`~()\s]/g, ""
       checkAnswer = checkAnswer.replace /^(a(n?)|the)/g, ""
       if AnswerChecker(checkGuess, checkAnswer)
-        resp.reply "YOU ARE CORRECT!!1!!!111!! The answer is #{@currentQ.answer}"
+        resp.send "YOU ARE CORRECT!!1!!!111!! The answer is #{@currentQ.answer}"
         name = resp.envelope.user.name.toLowerCase().trim()
         value = @currentQ.value.replace /[^0-9.-]+/g, ""
         @robot.logger.debug "#{name} answered correctly."
         user = resp.envelope.user
         user.triviaScore = user.triviaScore or 0
         user.triviaScore += parseInt value
-        resp.reply "Score: #{user.triviaScore}"
+        resp.send "Score: #{user.triviaScore}"
         @robot.brain.save()
         @currentQ = null
         @hintLength = null
