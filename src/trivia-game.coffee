@@ -14,12 +14,12 @@
 #   None
 #
 # Commands:
-#   !trivia - ask a question
-#   !skip - skip the current question
-#   !answer <answer> - provide an answer
-#   !hint - take a hint
-#   !score <player> - check the score of the player
-#   !scores or !score all - check the score of all players
+#   trivia - ask a question
+#   skip - skip the current question
+#   answer <answer> - provide an answer
+#   hint - take a hint
+#   score <player> - check the score of the player
+#   scores or !score all - check the score of all players
 #
 # Author:
 #   yincrash
