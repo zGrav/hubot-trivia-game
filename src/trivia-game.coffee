@@ -124,7 +124,7 @@ module.exports = (robot) ->
   robot.hear /skip/, (resp) ->
     game.skipQuestion(resp)
 
-  robot.hear /a(nswer)? (.*)/, (resp) ->
+  robot.hear /answer (.*)/, (resp) ->
     game.answerQuestion(resp, resp.match[2])
 
   robot.hear /score (.*)/i, (resp) ->
@@ -133,5 +133,5 @@ module.exports = (robot) ->
   robot.hear /scores/i, (resp) ->
     game.checkScore(resp, "all")
 
-  robot.hear /hint?/, (resp) ->
+  robot.hear /hint/, (resp) ->
     game.hint(resp)
