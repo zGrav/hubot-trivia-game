@@ -16,8 +16,8 @@
 # Commands:
 #   !trivia - ask a question
 #   !skip - skip the current question
-#   !answer <answer> or !a <answer> - provide an answer
-#   !hint or !h - take a hint
+#   !answer <answer> - provide an answer
+#   !hint - take a hint
 #   !score <player> - check the score of the player
 #   !scores or !score all - check the score of all players
 #
@@ -133,5 +133,5 @@ module.exports = (robot) ->
   robot.hear /scores/i, (resp) ->
     game.checkScore(resp, "all")
 
-  robot.hear /h(int)?/, (resp) ->
+  robot.hear /hint?/, (resp) ->
     game.hint(resp)
