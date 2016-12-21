@@ -51,6 +51,7 @@ class Game
     link = $question('a').attr('href')
     text = $question('span').text()
     resp.send "Answer by mentioning me and type answer followed by the actual answer\n" +
+              "or by clicking on the reply button\n" +
               "For #{@currentQ.value} in the category of #{@currentQ.category}:\n" +
               "#{text} " +
               if link then " #{link}" else ""
