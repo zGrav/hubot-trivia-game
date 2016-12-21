@@ -125,7 +125,7 @@ module.exports = (robot) ->
     game.skipQuestion(resp)
 
   robot.hear /answer (.*)/, (resp) ->
-    game.answerQuestion(resp, resp.match[2])
+    game.answerQuestion(resp, resp.match[1])
 
   robot.hear /score (.*)/i, (resp) ->
     game.checkScore(resp, resp.match[1].toLowerCase().trim())
