@@ -18,7 +18,7 @@
 #   skip - skip the current question
 #   answer <answer> - provide an answer
 #   hint - take a hint
-#   add @answer @category @question @valueInDollars - add a question to me in the order described
+#   add @answer @category @question @valueInDollars - add a question to be used in trivia (please use the indicated order without the @)
 #
 # Author:
 #   yincrash
