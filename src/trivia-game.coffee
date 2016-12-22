@@ -99,21 +99,6 @@ class Game
     else
       resp.send "There is no active question!"
 
-  checkScore: (resp, name) ->
-    if name == "all"
-      scores = ""
-      for user in @robot.brain.usersForFuzzyName ""
-        user.triviaScore = user.triviaScore or 0
-        scores += "#{user.name} - $#{user.triviaScore}\n"
-      resp.send scores
-    else
-      user = @robot.brain.userForName name
-      unless user
-        resp.send "There is no score for #{name}"
-      else
-        user.triviaScore = user.triviaScore or 0
-        resp.send "#{user.name} - $#{user.triviaScore}"
-
   addQuestion: (resp, answer, category, question, value) ->
     @questions.push({answer: answer, category: category, question: question, value: '$' + value})
     @robot.logger.debug "New question - #{answer}, #{category}, #{question}, $#{value} added to the JSON file"
