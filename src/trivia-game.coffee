@@ -18,8 +18,6 @@
 #   skip - skip the current question
 #   answer <answer> - provide an answer
 #   hint - take a hint
-#   score <player> - check the score of the player
-#   scores or score all - check the score of all players
 #   add @answer @category @question @valueInDollars - add a question to me in the order described
 #
 # Author:
@@ -132,12 +130,6 @@ module.exports = (robot) ->
 
   robot.hear /answer (.*)/, (resp) ->
     game.answerQuestion(resp, resp.match[1])
-
-  robot.hear /score (.*)/i, (resp) ->
-    game.checkScore(resp, resp.match[1].toLowerCase().trim())
-
-  robot.hear /scores/i, (resp) ->
-    game.checkScore(resp, "all")
 
   robot.hear /hint/, (resp) ->
     game.hint(resp)
