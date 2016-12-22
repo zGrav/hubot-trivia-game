@@ -20,6 +20,7 @@
 #   hint - take a hint
 #   score <player> - check the score of the player
 #   scores or score all - check the score of all players
+#   add @answer @category @question @valueInDollars - add a question to me in the order described
 #
 # Author:
 #   yincrash
@@ -115,6 +116,11 @@ class Game
         user.triviaScore = user.triviaScore or 0
         resp.send "#{user.name} - $#{user.triviaScore}"
 
+  addQuestion: (resp, answer, category, question, value) ->
+    @questions.push({answer: answer, category: category, question: question, value: '$' + value})
+    @robot.logger.debug "New question - #{answer}, #{category}, #{question}, $#{value} added to the JSON file"
+    buffer = Fs.writeFile(Path.resolve('./res', 'questions.json'), JSON.stringify(@questions, null, 1))
+    resp.send "New question - #{answer}, #{category}, #{question}, $#{value} added"
 
 module.exports = (robot) ->
   game = new Game(robot)
@@ -135,3 +141,6 @@ module.exports = (robot) ->
 
   robot.hear /hint/, (resp) ->
     game.hint(resp)
+
+  robot.hear /add (.*) (.*) (.*) (.*)/, (resp) ->
+    game.addQuestion(resp, resp.match[1], resp.match[2], resp.match[3], resp.match[4])
